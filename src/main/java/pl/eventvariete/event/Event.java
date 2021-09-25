@@ -1,6 +1,7 @@
 package pl.eventvariete.event;
 
 import lombok.Data;
+import pl.eventvariete.TypeOfEvent;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +19,7 @@ public class Event {
     private String name;
     private String description;
     private String city;
-    /*private LocalDateTime startEvent;
-    private LocalDateTime endEvent;
-    private TypeOfEvent typeOfEvent;
-*/
+    private LocalDateTime eventStartDate;
+    private LocalDateTime eventEndDate;
+    private String typeOfEvent;
 }

@@ -1,4 +1,4 @@
-package pl.eventvariete.event;
+package pl.eventvariete;
 
 public enum TypeOfEvent {
     CONCERT,
