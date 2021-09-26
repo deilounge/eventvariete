@@ -16,30 +16,29 @@ public class EventController {
     // Lists all events without criteria
     @GetMapping("/")
     public String getMain(){
-        return "<html><body><a href='/list'>Lista</a></body></html>";
+        return "<html><body><a href='/events'>Lista</a></body></html>";
     }
 
     // Lists all events without criteria
-    @GetMapping("/list")
-    public List<Event> getEventList(){
-        return eventService.getEventList();
+    @GetMapping("/events")
+    public List<Event> getEventList(@RequestParam(required = false) String sortBy){
+            return eventService.getEventList(sortBy);
     }
 
     // Adds one event into db
-    @PostMapping("/add")
+    @PostMapping("/events")
     public Event addEvent(@RequestBody Event event){
         return eventService.addEvent(event);
     }
 
     // Deletes one event in db
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/events/{id}")
     public void deleteEvent(@PathVariable(name = "id") Long id){
-        System.out.println(id);
         eventService.deleteEvent(id);
     }
 
     // Provides one event from db
-    @GetMapping("/get/{id}")
+    @GetMapping("/events/{id}")
     public Optional<Event> getEvent(@PathVariable(name = "id") Long id){
         return eventService.getEvent(id);
     }

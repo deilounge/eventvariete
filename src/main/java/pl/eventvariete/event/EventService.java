@@ -1,7 +1,7 @@
 package pl.eventvariete.event;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,8 +13,13 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public List<Event> getEventList() {
-        return eventRepository.findAll();
+    public List<Event> getEventList(String sortBy) {
+
+        if (sortBy == null || sortBy.isBlank()) {
+            return eventRepository.findAll();
+        } else {
+            return eventRepository.findAll(Sort.by(sortBy));
+        }
     }
 
     public Event addEvent(Event event) {
