@@ -18,7 +18,7 @@ public class Event<List> {
     @Lob
     private String description;
     private String city;
-    private String street;
+    private String address;
     private Float price;
     private LocalDateTime eventStartDate;
     private LocalDateTime eventEndDate;
