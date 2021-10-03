@@ -13,14 +13,33 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public List<Event> getEventList(String sortBy) {
+    public List<Event> getEventList(String sortBy, String orderBy, String category) {
 
-        if (sortBy == null || sortBy.isBlank()) {
-            return eventRepository.findAll();
+        String enumCategory = category.toUpperCase();
+
+        if (category == null) {
+            if (sortBy != null && !sortBy.isBlank()) {
+                if (orderBy != null && orderBy.equals("desc")) {
+                    return eventRepository.findAll(Sort.by(Sort.Direction.DESC, sortBy));
+                } else {
+                    return eventRepository.findAll(Sort.by(Sort.Direction.ASC, sortBy));
+                }
+            } else {
+                return eventRepository.findAll();
+            }
         } else {
-            return eventRepository.findAll(Sort.by(sortBy));
+            if (sortBy != null && !sortBy.isBlank()) {
+                if (orderBy != null && orderBy.equals("desc")) {
+                    return eventRepository.findByTypeOfEvent(TypeOfEvent.valueOf(enumCategory), Sort.by(Sort.Direction.DESC, sortBy));
+                } else {
+                    return eventRepository.findByTypeOfEvent(TypeOfEvent.valueOf(enumCategory), Sort.by(Sort.Direction.ASC, sortBy));
+                }
+            } else {
+                return eventRepository.findByTypeOfEvent(TypeOfEvent.valueOf(enumCategory), Sort.by(Sort.Direction.DESC, "name"));
+            }
         }
     }
+
 
     public Event addEvent(Event event) {
         return eventRepository.save(event);

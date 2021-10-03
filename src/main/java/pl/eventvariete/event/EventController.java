@@ -3,6 +3,7 @@ package pl.eventvariete.event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,12 @@ public class EventController {
 
     // Lists all events without criteria
     @GetMapping("/events")
-    public List<Event> getEventList(@RequestParam(required = false) String sortBy){
-            return eventService.getEventList(sortBy);
+    public List<Event> getEventList(
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String orderBy,
+            @RequestParam(required = false) String category){
+
+            return eventService.getEventList(sortBy, orderBy, category);
     }
 
     // Adds one event into db

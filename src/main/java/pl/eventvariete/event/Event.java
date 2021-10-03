@@ -1,6 +1,5 @@
 package pl.eventvariete.event;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,5 +21,5 @@ public class Event<List> {
     private Float price;
     private LocalDateTime eventStartDate;
     private LocalDateTime eventEndDate;
-    private String typeOfEvent;
+    private TypeOfEvent typeOfEvent;
 }

@@ -1,19 +1,14 @@
 package pl.eventvariete.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.List;
-
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class TypeOfEvent {
-    @Id
-    private Long id;
-    private String typeOfEvent;
+public enum TypeOfEvent {
+    ONLINE,
+    CONCERT,
+    THEATRE,
+    CINEMA,
+    EXHIBITION,
+    PARTY,
+    FESTIVAL,
+    GASTRONOMY,
+    FORKIDS,
+    OTHER
 }
